@@ -12,7 +12,9 @@ import 'dayjs/locale/zh-cn';
 dayjs.locale('zh-cn');
 
 // suppress useLayoutEffect warnings when running outside a browser
-if (!process.browser) React.useLayoutEffect = React.useEffect;
+if (typeof window !== 'undefined') {
+	React.useLayoutEffect = React.useEffect;
+}
 
 export function AntdProvider({ children }: { children: React.ReactNode }) {
 	const [cache] = useState(() => createCache());
